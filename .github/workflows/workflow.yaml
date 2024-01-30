@@ -1,0 +1,28 @@
+name: Build TypeScript Package
+
+on:
+  push:
+    branches:
+      - handle_unknown_tag  # You can specify the branch you want to trigger this workflow on
+
+jobs:
+  build:
+    runs-on: self-hosted  # You can choose a different runner based on your needs
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # This action checks out your repository's code
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16  # You can specify the Node.js version you need
+
+      - name: Install dependencies
+        run: npm install  # You can use yarn if you prefer
+
+      - name: Build TypeScript
+        run: npm run build  # Replace with your actual build script if needed
+
+      # Optionally, you can include additional steps like testing, linting, or publishing.
+
