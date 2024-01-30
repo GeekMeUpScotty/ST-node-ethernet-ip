@@ -24,5 +24,11 @@ jobs:
       - name: Build TypeScript
         run: npm run build  # Replace with your actual build script if needed
 
+      - name: Generate Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: twe-st-ethernet-ip  # Specify a name for your artifact
+          path: .         # Adjust the path to the build artifacts
+
       # Optionally, you can include additional steps like testing, linting, or publishing.
 
