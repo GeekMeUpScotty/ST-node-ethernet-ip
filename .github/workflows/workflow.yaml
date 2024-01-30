@@ -18,17 +18,26 @@ jobs:
         with:
           node-version: 16  # You can specify the Node.js version you need
 
+      - name: Extract Package Version
+        run: |
+          # Read package.json and extract the version
+          VERSION=$(node -p "require('./package.json').version")
+          echo "Package version is $VERSION"
+
       - name: Install dependencies
         run: npm install  # You can use yarn if you prefer
 
       - name: Build TypeScript
         run: npm run build  # Replace with your actual build script if needed
 
-      - name: Generate Artifacts
+      - name: Create Distributable Package
+        run: npm pack
+
+      - name: Upload Distributable Package
         uses: actions/upload-artifact@v2
         with:
-          name: twe-st-ethernet-ip  # Specify a name for your artifact
-          path: .         # Adjust the path to the build artifacts
+          name: my-artifact
+          path: st-ethernet-ip-$VERSION.tgz
 
       # Optionally, you can include additional steps like testing, linting, or publishing.
 
